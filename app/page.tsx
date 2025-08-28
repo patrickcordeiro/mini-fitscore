@@ -1,9 +1,10 @@
+import Logo from "@/components/Logo/page";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-4 items-center">
-      <h1 className="text-3xl font-bold">Mini FitScore™</h1>
+    <div className="flex flex-col gap-4 items-center p-10">
+      <Logo />
       <p className="text-gray-600">Escolha uma opção:</p>
       <div className="flex gap-4">
         <Link
