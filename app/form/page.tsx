@@ -11,6 +11,7 @@ import { calculateTotalScore } from "@/utils/calculateScore";
 import { createClient } from "@/lib/browser-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import FormUser from "@/components/FormUser/page";
 
 export type Category = "Performance" | "Energia" | "Cultura";
 export interface SelectedOption {
@@ -25,6 +26,10 @@ export default function FormPage() {
   const [selectedOptions, setSelectedOptions] = useState<SelectedOption[]>([]);
   const [selectedCategory, setSelectedCategory] =
     useState<Category>("Performance");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+  });
   const router = useRouter();
 
   const percentageByCategory = (category: Category) => {
@@ -98,8 +103,8 @@ export default function FormPage() {
     // });
 
     const dataToSend = {
-      name: "Fulano da Silva",
-      email: "fulano@example.com",
+      name: formData.name,
+      email: formData.email,
       answers: selectedOptions.map((opt) => opt.index),
       meta: {
         source: "mini-fitscore-frontend",
@@ -168,6 +173,8 @@ export default function FormPage() {
           ))}
         </div>
       </div>
+
+      <FormUser formData={formData} setFormData={setFormData} />
 
       <hr className="w-11/12 my-6 border-t border-gray-300 " />
 
